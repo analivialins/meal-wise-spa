@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export const Button = styled.button`
-    background-color: ${theme.colors.brand.pink};
-    color: ${theme.colors.grayscale[0]};
+export const Button = styled.button<{$type : "primary" | "secondary"}>`
+    background-color: ${({ $type }) => 
+    $type === "primary" ? theme.colors.brand.pink : theme.colors.primary.lightpink};
+
+    color: ${({ $type }) => 
+    $type === "primary" ? theme.colors.grayscale.white : theme.colors.brand.pink};
 
     display: flex;
     gap: .5rem;

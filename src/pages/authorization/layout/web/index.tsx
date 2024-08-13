@@ -13,8 +13,6 @@ interface AuthorizationProps {
 }
 
 export default function AuthorizationWeb({handleSubmit, email, setEmail, password, setPassword}:AuthorizationProps) {
-    const { isMobile } = useDevice()
-
     return (
         <S.Container>
         <S.ContentContainer >
