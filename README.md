@@ -1,50 +1,63 @@
-# React + TypeScript + Vite
+<p align="center">
+  <img src="./public/Logo.svg" width="600" alt="MealWise Logo" />
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">Diet and personal health tracker web application</p>
 
-Currently, two official plugins are available:
+# MealWise - Front-End 🌟
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Welcome to the **MealWise** front-end repository! This repository contains the web interface for our solution for diet tracking and personal health management.
 
-## Expanding the ESLint configuration
+## Description 🥗
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**MealWise** is an innovative web application designed to help users plan their diets and monitor their health efficiently. With a sleek and intuitive interface, MealWise allows you to:
 
-- Configure the top-level `parserOptions` property like this:
+- **Create and Manage Meal Plans:** Easily customize meal plans based on your dietary needs and preferences.
+- **Handle Recipes:** Add, update, and remove recipes, including detailed ingredients and preparation steps.
+- **Track Calorie Intake:** Monitor and manage your calorie intake to stay aligned with your health goals.
+- **Manage User Profiles:** Track health metrics and progress through individual user profiles.
+- **View Progress:** Analyze and review your dietary progress over time.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Project Setup
+
+To get started with the front-end, follow the steps below:
+
+### Installation
+
+Clone the repository:
+
+```bash
+$ git clone https://github.com/your-username/mealwise-front-end.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Navigate to the project directory:
+    
+```bash
+$ cd mealwise-front-end
 ```
+
+Install the dependencies:
+
+```bash
+$ npm install
+```
+
+## Running the project
+
+```bash
+# development
+$ npm run dev
+```
+
+## Access the links project
+
+- API Repository - [MealWise API](https://github.com/analivialins/meal-wise-api)
+- Mobile Repository  🚧 - Coming Soon...
+- Design Link 🚧 - [Figma](https://www.figma.com/design/wXIf1CEiscRYdnATkktbEB/Untitled?node-id=1-21&t=MRoSUlzn5bSxJwoj-1)
+
+## Made by
+
+- Author - [Ana Lívia Lins](https://www.linkedin.com/in/analivialins/) 💖
+- Designer Co-Author - [Kaere Alarcon](https://www.linkedin.com/in/kaere/)
+
+
