@@ -27,13 +27,13 @@ To get started with the front-end, follow the steps below:
 Clone the repository:
 
 ```bash
-$ git clone https://github.com/your-username/mealwise-front-end.git
+$ git clone https://github.com/your-username/meal-wise-spa.git
 ```
 
 Navigate to the project directory:
     
 ```bash
-$ cd mealwise-front-end
+$ cd meal-wise-spa
 ```
 
 Install the dependencies:
