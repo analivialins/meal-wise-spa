@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
-import { ROUTES } from '../../routes/routes.template';
-import { login } from '../../services/authorization';
+import { ROUTES } from '../routes/routes.template';
+import { login } from '../services/authorization';
 
 interface LoginCredentials {
   email: string;

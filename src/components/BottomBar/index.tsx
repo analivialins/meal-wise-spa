@@ -1,4 +1,4 @@
-import { useRoute } from "../../context/RouteContext";
+import { useRoute } from "../../contexts/RouteContext";
 import { ROUTES } from "../../routes/routes.template";
 import * as S from "./style";
 import { BookOpenText, House, User } from "@phosphor-icons/react";

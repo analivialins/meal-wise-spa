@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import useLogin from '../../hooks/authorization/useAuthorization';
+import useLogin from '../../hooks/useAuthorization';
 import { useDevice } from '../../hooks/useDevice';
 import AuthorizationMobile from './layout/mobile'
 import AuthorizationWeb from './layout/web';

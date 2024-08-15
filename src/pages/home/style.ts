@@ -4,6 +4,7 @@ import { theme } from "../../theme";
 export const Title = styled.h1 `
     color: ${theme.colors.primary.hardgray};
     font-size: 2rem;
+    margin-top: 3rem;
 `
 
 export const Infos = styled.div <{$isMobile:boolean}>`
