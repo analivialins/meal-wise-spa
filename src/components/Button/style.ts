@@ -8,6 +8,14 @@ export const Button = styled.button<{$type : "primary" | "secondary"}>`
     color: ${({ $type }) => 
     $type === "primary" ? theme.colors.grayscale.white : theme.colors.brand.pink};
 
+    &:hover {
+        background-color: ${({ $type }) => 
+            $type === "primary" ? theme.colors.primary.lightpink : theme.colors.brand.pink};
+        color: ${({ $type }) => 
+            $type === "primary" ? theme.colors.brand.pink : theme.colors.grayscale.white};
+        transition: .3s ease-in-out;
+    }
+
     display: flex;
     gap: .5rem;
     align-items: center;

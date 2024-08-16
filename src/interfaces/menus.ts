@@ -1,3 +1,4 @@
+import { MealType } from "./recipes";
 
 interface Ingredient {
     unity: number;
@@ -13,11 +14,10 @@ interface Recipe {
     prepares: string[];
 }
 
-interface Meal {
-    type: number;
+export interface Meal {
+    type: MealType;
     recipe: Recipe;
 }
-
 
 export interface Menu {
     id: string;
@@ -25,15 +25,12 @@ export interface Menu {
     updated_at: string;
     user: string;
     meals: {
-        sunday: Meal;
-        monday: Meal;
-        tuesday: Meal;
-        wednesday: Meal;
-        thursday: Meal;
-        friday: Meal;
-        saturday: Meal;
+        sunday: Meal[];
+        monday: Meal[];
+        tuesday: Meal[];
+        wednesday: Meal[];
+        thursday: Meal[];
+        friday: Meal[];
+        saturday: Meal[];
     };
 }
-
-export type Menus = Menu[];
-  

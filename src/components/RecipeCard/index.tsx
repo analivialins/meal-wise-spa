@@ -1,14 +1,42 @@
-import { Menus } from "../../interfaces/menus";
+    import { BookOpenText, Coffee, CookingPot, FireSimple, ForkKnife } from "@phosphor-icons/react";
+    import useRecipeImage from "../../hooks/useRecipeImage";
+    import { Meal } from "../../interfaces/menus";
+    import * as S from "./style"
+    import Tag from "../Tag";
+    import { MealType } from "../../interfaces/recipes";
+import Button from "../Button";
 
-type MenuProp = {
-    menu: Menus
-}
 
-export default function RecipeCard({menu}: MenuProp) {
+    type RecipeCardProp = {
+        meal: Meal;
+    };
 
-    console.log(menu);
-    
-    return(
-        <></>
-    )
-}
+    export default function RecipeCard({ meal }: RecipeCardProp) {
+        const { recipe } = meal;
+        const imageSrc = useRecipeImage(recipe.cover);
+
+        const getTagDetails = (type: MealType) => {
+            switch (type) {
+                case 0:
+                    return { icon: <Coffee weight="fill" />, label: "Café da Manhã" };
+                case 1:
+                    return { icon: <ForkKnife weight="fill" />, label: "Almoço" };
+                case 2:
+                    return { icon: <CookingPot weight="fill" />, label: "Jantar" };
+                default:
+                    return { icon: <Coffee weight="fill" />, label: "Desconhecido" };
+            }
+        };
+        
+        const { icon, label } = getTagDetails(meal.type);
+
+        return (
+            <S.Wrapper>
+                <Tag icon={icon} label={label}/>
+                <S.Image backgroundImage={imageSrc} />
+                <h2>{recipe.name}</h2>
+                <p><FireSimple weight="fill" />{recipe.totalCalories} Kcal</p>
+                <Button><BookOpenText  weight="fill"/> Ver Receita</Button>
+            </S.Wrapper>
+        );
+    }

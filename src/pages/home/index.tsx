@@ -10,21 +10,25 @@ import ProgressBar from "../../components/ProgressBar";
 import Button from "../../components/Button";
 import { useDevice } from "../../hooks/useDevice";
 import RecipeCard from "../../components/RecipeCard";
-import { useMenu } from "../../hooks/useMenu"
+import { useMenu } from "../../hooks/useMenu";
+import { getFormattedDate, getMenuForToday } from "../../utils/strings";
 
 export default function Home() {
     const { isMobile } = useDevice();
     const { setActiveRoute } = useRoute();
     const name = sessionStorage.getItem("name");
 
-    const { menus, loading, error, fetchMenus } = useMenu();
+    const { menu, loading, error, fetchMenus } = useMenu();
 
     useEffect(() => {
         setActiveRoute(ROUTES.HOME);
-
         fetchMenus();
     }, [setActiveRoute, fetchMenus]);
 
+    const mealsToday = menu ? getMenuForToday(menu) : [];
+    const sortedMeals = mealsToday.sort((a, b) => a.type - b.type);
+    
+    const totalCalories = mealsToday.reduce((acc, meal) => acc + meal.recipe.totalCalories, 0);
     return (
         <Layout>
             <S.Title>Olá, {name}!</S.Title>
@@ -37,26 +41,31 @@ export default function Home() {
                         <Tag label="80 Kg" />
                         <Button variant="secondary"><Person weight="fill" /> Atualizar peso</Button>
                     </S.InfosContent>
+                    
                     <ProgressBar minWeight={100} maxWeight={60} currentWeight={80} />
                 </S.ActualWeigth>
             </S.Infos>
 
             <S.Menus>
                 <S.TitleMenus>
-                    <Tag label="16 Mai • Segunda" />
+                    <Tag label={getFormattedDate()} />
                     <h1>Seu Cardápio Hoje</h1>
-                    <span><FireSimple weight="fill" /> 1250kj</span>
+                    <span><FireSimple weight="fill" /> {totalCalories} Kcal</span>
                 </S.TitleMenus>
 
-                {loading ? (
-                    <p>Loading...</p>
-                ) : error ? (
-                    <p>Error fetching menus: {error}</p>
-                ) : (
-                    menus.map((menu) => (
-                        <RecipeCard key={menu.id} menu={menus}/>
-                    ))
-                )}
+                <S.RecipesCardWrapper>
+                        {loading ? (
+                            <p>Loading...</p>
+                        ) : error ? (
+                            <p>Error fetching menu: {error}</p>
+                        ) : (
+                            sortedMeals.map((meal, index) => (
+                                
+                                    <RecipeCard key={index} meal={meal} />
+                                
+                            ))
+                        )}
+                </S.RecipesCardWrapper>
             </S.Menus>
         </Layout>
     );

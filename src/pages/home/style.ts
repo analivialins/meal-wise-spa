@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
+import ProgressBar from "../../components/ProgressBar";
 
 export const Title = styled.h1 `
     color: ${theme.colors.primary.hardgray};
@@ -46,12 +47,19 @@ export const InfosContent = styled.div <{$isMobile:boolean}>`
     }
 `
 
-
-
-
 export const Menus = styled.div`
     display: flex;
     flex-direction:column;
+    margin-top: 3rem;
+`
+
+export const RecipesCardWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    flex-wrap:wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
     margin-top: 3rem;
 `
 

@@ -1,12 +1,16 @@
-import { useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
-type MealType = 'breakfast' | 'lunch' | 'dinner';
+const useRecipeImage = (coverId: number) => {
+  const [imageSrc, setImageSrc] = useState<string>('/src/assets/recipescovers/placeholder.jpg');
 
-const useRecipeImage = (mealType: MealType, coverId: number) => {
-  const imageSrc = useMemo(() => {
-    const folderPath = `/src/assets/${mealType}`;
-    return `${folderPath}/${coverId - 1}.jpg`;
-  }, [mealType, coverId]);
+  useEffect(() => {
+    const imageUrl = `/src/assets/recipescovers/${coverId}.jpg`;
+
+    const img = new Image();
+    img.src = imageUrl;
+    img.onload = () => setImageSrc(imageUrl);
+    img.onerror = () => setImageSrc('/src/assets/recipescovers/placeholder.jpg');
+  }, [coverId]);
 
   return imageSrc;
 };

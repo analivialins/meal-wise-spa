@@ -8,9 +8,9 @@ export default function Layout({children}:any) {
     const { isMobile } = useDevice()
     return(
         <S.Wrapper>
-            <S.ContentWrapper>
+            <S.ContentWrapper $isMobile={isMobile}>
                 <img src={Logo}/>
-                <S.Content $isMobile={isMobile}>
+                <S.Content >
                     {children}
                 </S.Content>
             </S.ContentWrapper>
