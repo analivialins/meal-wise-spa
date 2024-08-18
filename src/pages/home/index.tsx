@@ -9,9 +9,9 @@ import Tag from "../../components/Tag";
 import ProgressBar from "../../components/ProgressBar";
 import Button from "../../components/Button";
 import { useDevice } from "../../hooks/useDevice";
-import RecipeCard from "../../components/RecipeCard";
 import { useMenu } from "../../hooks/useMenu";
 import { getFormattedDate, getMenuForToday } from "../../utils/strings";
+import MenuCard from "../../components/MenuCard";
 
 export default function Home() {
     const { isMobile } = useDevice();
@@ -61,7 +61,7 @@ export default function Home() {
                         ) : (
                             sortedMeals.map((meal, index) => (
                                 
-                                    <RecipeCard key={index} meal={meal} />
+                                    <MenuCard key={index} meal={meal} />
                                 
                             ))
                         )}

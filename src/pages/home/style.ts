@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
-import ProgressBar from "../../components/ProgressBar";
 
 export const Title = styled.h1 `
     color: ${theme.colors.primary.hardgray};
@@ -55,7 +54,7 @@ export const Menus = styled.div`
 
 export const RecipesCardWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
     flex-wrap:wrap;
     justify-content: space-between;
     gap: 1rem;

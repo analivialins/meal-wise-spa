@@ -1,42 +1,25 @@
-    import { BookOpenText, Coffee, CookingPot, FireSimple, ForkKnife } from "@phosphor-icons/react";
-    import useRecipeImage from "../../hooks/useRecipeImage";
-    import { Meal } from "../../interfaces/menus";
-    import * as S from "./style"
-    import Tag from "../Tag";
-    import { MealType } from "../../interfaces/recipes";
+import useRecipeImage from "../../hooks/useRecipeImage";
+import * as S from "./style";
+
 import Button from "../Button";
+import { Recipe } from "../../interfaces/recipes";
+import { FireSimple, BookOpenText } from "@phosphor-icons/react";
 
+type RecipeCardProp = {
+    recipe: Recipe;
+};
 
-    type RecipeCardProp = {
-        meal: Meal;
-    };
+export default function RecipeCard({ recipe }: RecipeCardProp) {
+    const imageSrc = useRecipeImage(recipe.cover);
 
-    export default function RecipeCard({ meal }: RecipeCardProp) {
-        const { recipe } = meal;
-        const imageSrc = useRecipeImage(recipe.cover);
-
-        const getTagDetails = (type: MealType) => {
-            switch (type) {
-                case 0:
-                    return { icon: <Coffee weight="fill" />, label: "Café da Manhã" };
-                case 1:
-                    return { icon: <ForkKnife weight="fill" />, label: "Almoço" };
-                case 2:
-                    return { icon: <CookingPot weight="fill" />, label: "Jantar" };
-                default:
-                    return { icon: <Coffee weight="fill" />, label: "Desconhecido" };
-            }
-        };
-        
-        const { icon, label } = getTagDetails(meal.type);
-
-        return (
-            <S.Wrapper>
-                <Tag icon={icon} label={label}/>
-                <S.Image backgroundImage={imageSrc} />
-                <h2>{recipe.name}</h2>
-                <p><FireSimple weight="fill" />{recipe.totalCalories} Kcal</p>
-                <Button><BookOpenText  weight="fill"/> Ver Receita</Button>
-            </S.Wrapper>
-        );
-    }
+    return (
+        <S.Wrapper>
+            <S.Image backgroundImage={imageSrc}/>
+            <h2>{recipe.name}</h2>
+            <p><FireSimple weight="fill" /> {recipe.totalCalories} Kcal</p>
+            <Button>
+                <BookOpenText weight="fill" /> Ver Receita
+            </Button>
+        </S.Wrapper>
+    );
+}

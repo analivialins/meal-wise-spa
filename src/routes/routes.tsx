@@ -5,6 +5,7 @@ import { ROUTES } from "./routes.template";
 import DefaultRedirect from "../hooks/useDefaulRedirect";
 import Authorization from "../pages/authorization";
 import Home from "../pages/home";
+import Recipes from "../pages/recipes";
 
 const router = createBrowserRouter(
     [
@@ -19,6 +20,10 @@ const router = createBrowserRouter(
         {
             path: ROUTES.HOME,
             element: <Home />,
+        },
+        {
+            path: ROUTES.RECIPE,
+            element: <Recipes />,
         }
     ],
     { basename: '/' }
