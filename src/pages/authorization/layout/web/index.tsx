@@ -2,7 +2,6 @@ import * as S from './style';
 import Logo from '../../../../assets/images/logo.svg';
 import Button from '../../../../components/Button';
 import TextInput from '../../../../components/Inputs/TextInput';
-import { useDevice } from '../../../../hooks/useDevice';
 
 interface AuthorizationProps {
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;

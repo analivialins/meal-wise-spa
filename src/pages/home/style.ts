@@ -79,3 +79,10 @@ export const TitleMenus = styled.div`
         align-items: center;
     }
 `
+
+export const ModalWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+`

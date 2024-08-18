@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Placeholder from '../assets/recipesCovers/placeholdersvg.svg';
+import Placeholder from "../../assets/recipesCovers/placeholdersvg.svg";
 
 const useRecipeImage = (coverId: number) => {
   const [imageSrc, setImageSrc] = useState<string>(Placeholder);

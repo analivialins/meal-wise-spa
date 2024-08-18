@@ -1,5 +1,5 @@
     import { BookOpenText, Coffee, CookingPot, FireSimple, ForkKnife } from "@phosphor-icons/react";
-    import useRecipeImage from "../../hooks/useRecipeImage";
+    import useRecipeImage from "../../hooks/recipes/useRecipeImage";
     import { Meal } from "../../interfaces/menus";
     import * as S from "./style"
     import Tag from "../Tag";

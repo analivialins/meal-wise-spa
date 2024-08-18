@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRoute } from "../../contexts/RouteContext";
 import Layout from "../../components/layout";
 import { ROUTES } from "../../routes/routes.template";
@@ -8,27 +8,46 @@ import * as S from "./style";
 import Tag from "../../components/Tag";
 import ProgressBar from "../../components/ProgressBar";
 import Button from "../../components/Button";
-import { useDevice } from "../../hooks/useDevice";
-import { useMenu } from "../../hooks/useMenu";
+import { useDevice } from "../../hooks/utils/useDevice";
 import { getFormattedDate, getMenuForToday } from "../../utils/strings";
 import MenuCard from "../../components/MenuCard";
+import Modal from "../../components/Modal";
+import TextInput from "../../components/Inputs/TextInput";
+import { useMenu } from "../../hooks/menus/useMenu";
+import useUpdateUserInformations from "../../hooks/users/useUpdateUserInformations";
+import { Informations } from "../../interfaces/users";
 
 export default function Home() {
+    const name = sessionStorage.getItem("name");
+    const userInformations: Informations = JSON.parse(sessionStorage.getItem("informations") || '{}');
+    
     const { isMobile } = useDevice();
     const { setActiveRoute } = useRoute();
-    const name = sessionStorage.getItem("name");
-
     const { menu, loading, error, fetchMenus } = useMenu();
+    const { mutate } = useUpdateUserInformations();
+
+    const [weightModal, setWeightModal] = useState<boolean>(false);
+    const [currentWeight, setCurrentWeight] = useState<string>(userInformations.currentWeight || '');
+
+    const mealsToday = menu ? getMenuForToday(menu) : [];
+    const sortedMeals = mealsToday.sort((a, b) => a.type - b.type);
+    const totalCalories = mealsToday.reduce((acc, meal) => acc + meal.recipe.totalCalories, 0);
+
+    const handleUpdateWeight = () => {
+        const updatedInformations: Informations = {
+            ...userInformations,
+            currentWeight: currentWeight,
+        };
+
+        mutate(updatedInformations);
+        setWeightModal(false);
+    };
 
     useEffect(() => {
         setActiveRoute(ROUTES.HOME);
         fetchMenus();
     }, [setActiveRoute, fetchMenus]);
 
-    const mealsToday = menu ? getMenuForToday(menu) : [];
-    const sortedMeals = mealsToday.sort((a, b) => a.type - b.type);
-    
-    const totalCalories = mealsToday.reduce((acc, meal) => acc + meal.recipe.totalCalories, 0);
     return (
         <Layout>
             <S.Title>Olá, {name}!</S.Title>
@@ -38,11 +57,15 @@ export default function Home() {
                 <S.ActualWeigth>
                     <S.InfosContent $isMobile={isMobile}>
                         <span>Peso Atual:</span>
-                        <Tag label="80 Kg" />
-                        <Button variant="secondary"><Person weight="fill" /> Atualizar peso</Button>
+                        <Tag label={`${currentWeight} Kg`} />
+                        <Button variant="secondary" onClick={() => setWeightModal(true)}><Person weight="fill" /> Atualizar peso</Button>
                     </S.InfosContent>
                     
-                    <ProgressBar minWeight={100} maxWeight={60} currentWeight={80} />
+                    <ProgressBar 
+                        minWeight={parseInt(userInformations.weight, 10)} 
+                        maxWeight={parseInt(userInformations.goalWeight, 10)} 
+                        currentWeight={parseInt(currentWeight, 10) || 0} 
+                    />
                 </S.ActualWeigth>
             </S.Infos>
 
@@ -54,19 +77,30 @@ export default function Home() {
                 </S.TitleMenus>
 
                 <S.RecipesCardWrapper>
-                        {loading ? (
-                            <p>Loading...</p>
-                        ) : error ? (
-                            <p>Error fetching menu: {error}</p>
-                        ) : (
-                            sortedMeals.map((meal, index) => (
-                                
-                                    <MenuCard key={index} meal={meal} />
-                                
-                            ))
-                        )}
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : error ? (
+                        <p>Error fetching menu: {error}</p>
+                    ) : (
+                        sortedMeals.map((meal, index) => (
+                            <MenuCard key={index} meal={meal} />
+                        ))
+                    )}
                 </S.RecipesCardWrapper>
             </S.Menus>
+
+            {weightModal && (
+                <Modal closeModal={() => setWeightModal(false)} title="Peso Atual">
+                    <S.ModalWrapper>
+                        <TextInput  
+                            label="Peso atual" 
+                            value={currentWeight} 
+                            onChange={(e) => setCurrentWeight(e.target.value)} 
+                        />
+                        <Button onClick={handleUpdateWeight}>Atualizar Peso</Button>
+                    </S.ModalWrapper>
+                </Modal>
+            )}
         </Layout>
     );
 }

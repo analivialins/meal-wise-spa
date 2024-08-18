@@ -1,5 +1,5 @@
 import Logo from "../../assets/images/logo.svg"
-import { useDevice } from "../../hooks/useDevice"
+import { useDevice } from "../../hooks/utils/useDevice"
 import BottomBar from "../BottomBar"
 
 import * as S from "./style"

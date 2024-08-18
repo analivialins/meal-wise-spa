@@ -7,7 +7,7 @@ import RecipeCard from "../../components/RecipeCard";
 
 import * as S from "./style"
 
-import { useRecipe } from "../../hooks/useRecipes";
+import { useRecipe } from "../../hooks/recipes/useRecipes";
 import { useRoute } from "../../contexts/RouteContext";
 import { useEffect } from "react";
 

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { getMenus } from '../services/menus';
+import { getMenus } from '../../services/menus';
 
-import type { Menu } from "../interfaces/menus";
+import type { Menu } from "../../interfaces/menus";
 
 export const useMenu = () => {
   const {

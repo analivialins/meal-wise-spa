@@ -1,4 +1,4 @@
-import useRecipeImage from "../../hooks/useRecipeImage";
+import useRecipeImage from "../../hooks/recipes/useRecipeImage";
 import * as S from "./style";
 
 import Button from "../Button";

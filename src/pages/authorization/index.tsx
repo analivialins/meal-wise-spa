@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import useLogin from '../../hooks/useAuthorization';
-import { useDevice } from '../../hooks/useDevice';
+import useLogin from '../../hooks/authorization/useAuthorization';
+import { useDevice } from '../../hooks/utils/useDevice';
 import AuthorizationMobile from './layout/mobile'
 import AuthorizationWeb from './layout/web';
 
@@ -11,7 +11,7 @@ export default function Authorization() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { mutate: login, isError, error } = useLogin();
+    const { mutate: login} = useLogin();
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();

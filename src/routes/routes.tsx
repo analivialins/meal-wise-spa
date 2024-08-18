@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes.template";
 
-import DefaultRedirect from "../hooks/useDefaulRedirect";
+import DefaultRedirect from "../hooks/utils/useDefaulRedirect";
 import Authorization from "../pages/authorization";
 import Home from "../pages/home";
 import Recipes from "../pages/recipes";

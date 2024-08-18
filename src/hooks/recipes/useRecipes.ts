@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { getRecipes } from '../services/recipes';
+import { getRecipes } from '../../services/recipes';
 
-import type { Recipe } from "../interfaces/recipes";
+import type { Recipe } from "../../interfaces/recipes";
 
 export const useRecipe = () => {
   const {

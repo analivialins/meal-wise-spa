@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
     transform: translateX(-50%);
     margin-bottom: 1rem;
     box-shadow: 0 0px 5px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;
 `;
 
 export const NavigationItem = styled.div<NavigationItemProps>`
