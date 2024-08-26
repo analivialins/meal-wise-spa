@@ -1,4 +1,5 @@
 import { Meal, Menu } from "../interfaces/menus";
+import { Unit, units } from "./const";
 
 type DayOfWeek = 'sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday';
 
@@ -17,3 +18,7 @@ export const getFormattedDate = () : string => {
     
     return `${dayOfMonth} ${monthName} • ${dayName}`;
 }
+
+export const getUnitById = (id: number): Unit | null => {
+    return units[id] || null;
+  };

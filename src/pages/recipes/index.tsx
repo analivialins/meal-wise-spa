@@ -7,13 +7,13 @@ import RecipeCard from "../../components/RecipeCard";
 
 import * as S from "./style"
 
-import { useRecipe } from "../../hooks/recipes/useRecipes";
+import { useRecipes } from "../../hooks/recipes/useRecipes";
 import { useRoute } from "../../contexts/RouteContext";
 import { useEffect } from "react";
 
 
 export default function Recipes() {
-    const { recipes, loading, error, fetchRecipes } = useRecipe();
+    const { recipes, loading, error, fetchRecipes } = useRecipes();
     const { setActiveRoute } = useRoute();
 
     useEffect(() => {

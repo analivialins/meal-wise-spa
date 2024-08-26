@@ -16,6 +16,8 @@ import TextInput from "../../components/Inputs/TextInput";
 import { useMenu } from "../../hooks/menus/useMenu";
 import useUpdateUserInformations from "../../hooks/users/useUpdateUserInformations";
 import { Informations } from "../../interfaces/users";
+import RecipeModal from "../../components/RecipeModal";
+import { Recipe } from "../../interfaces/recipes";
 
 export default function Home() {
     const name = sessionStorage.getItem("name");
@@ -27,7 +29,10 @@ export default function Home() {
     const { mutate } = useUpdateUserInformations();
 
     const [weightModal, setWeightModal] = useState<boolean>(false);
+    const [recipeModal, setRecipeModal] = useState<boolean>(false);
+
     const [currentWeight, setCurrentWeight] = useState<string>(userInformations.currentWeight || '');
+    const [recipeModalId, setRecipeModalId] = useState<string>()
 
     const mealsToday = menu ? getMenuForToday(menu) : [];
     const sortedMeals = mealsToday.sort((a, b) => a.type - b.type);
@@ -83,11 +88,25 @@ export default function Home() {
                         <p>Error fetching menu: {error}</p>
                     ) : (
                         sortedMeals.map((meal, index) => (
-                            <MenuCard key={index} meal={meal} />
+                            <>
+                                <MenuCard 
+                                onClick={() => 
+                                   { setRecipeModalId(meal.recipe.id)
+                                    setRecipeModal(true)}
+                                } 
+                                key={index} 
+                                meal={meal} 
+                                />
+                            </>
                         ))
+                        
                     )}
                 </S.RecipesCardWrapper>
             </S.Menus>
+
+            { (recipeModal && recipeModalId) &&
+                <RecipeModal closeModal={() => setRecipeModal(false)} recipeId={recipeModalId}/>
+                }
 
             {weightModal && (
                 <Modal closeModal={() => setWeightModal(false)} title="Peso Atual">

@@ -7,6 +7,7 @@ interface Ingredient {
 }
 
 interface Recipe {
+    id: string;
     name: string;
     cover: number;
     totalCalories: number;

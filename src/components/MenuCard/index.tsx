@@ -9,10 +9,11 @@
 
     type MenuCardProp = {
         meal: Meal;
+        onClick: () => void;
     };
 
 
-    export default function MenuCard({ meal }: MenuCardProp) {
+    export default function MenuCard({ meal, onClick }: MenuCardProp) {
         const { recipe } = meal;
         const imageSrc = useRecipeImage(recipe.cover);
 
@@ -37,7 +38,7 @@
                 <S.Image backgroundImage={imageSrc} />
                 <h2>{recipe.name}</h2>
                 <p><FireSimple weight="fill" />{recipe.totalCalories} Kcal</p>
-                <Button><BookOpenText  weight="fill"/> Ver Receita</Button>
+                <Button onClick={onClick}><BookOpenText  weight="fill"/> Ver Receita</Button>
             </S.Wrapper>
         );
     }

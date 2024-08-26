@@ -3,7 +3,7 @@ import { getRecipes } from '../../services/recipes';
 
 import type { Recipe } from "../../interfaces/recipes";
 
-export const useRecipe = () => {
+export const useRecipes = () => {
   const {
     data: recipes,
     isLoading: loading,
